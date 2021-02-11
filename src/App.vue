@@ -77,7 +77,7 @@ export default {
       var self = this;
       fetch("/.auth/me").then(
         response => response.json()
-      ).then(data => self.socialNetworkUserInfo = data);
+      ).then(data => self.socialNetworkUserInfo = data.clientPrincipal);
     }
 
   },
