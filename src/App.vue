@@ -6,6 +6,18 @@
           {{equipe.Code}} - {{equipe.Nom}}
       </div>
     </div>
+    <hr/>
+    <div>
+      Comptes Sociaux
+      <div>
+        <div v-if="socialNetworkUserInfo == null">
+          <a href="/.auth/login/google">Login</a>
+        </div>
+        <div v-else>
+          <div>{{socialNetworkUserInfo.userDetails}} </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -20,7 +32,8 @@ export default {
       token: "",
       user: null,
       equipes:null, 
-      host:process.env.VUE_APP_STRAPI_API
+      host:process.env.VUE_APP_STRAPI_API,
+      socialNetworkUserInfo: null
     };
   },
   methods:{
@@ -59,15 +72,24 @@ export default {
           self.equipes = data;
         });
       }
+    },
+    getSocialUserInfo(){
+      var self = this;
+      fetch("/.auth/me").then(
+        response => response.json()
+      ).then(data => self.socialNetworkUserInfo = data);
     }
 
   },
   created(){
     this.authenticate();
+    this.getSocialUserInfo();
     
   },
   mounted(){
    
+  },
+  computed:{
   }
 };
 </script>
