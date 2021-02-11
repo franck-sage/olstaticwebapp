@@ -12,6 +12,9 @@
       <div>
         <div v-if="socialNetworkUserInfo == null">
           <div>
+            <a href="/.auth/login/aad">Login with Microsoft Azure</a>
+          </div>
+          <div>
             <a href="/.auth/login/google">Login with Google</a>
           </div>
           <div>
