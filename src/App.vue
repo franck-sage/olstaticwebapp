@@ -11,10 +11,24 @@
       Comptes Sociaux
       <div>
         <div v-if="socialNetworkUserInfo == null">
-          <a href="/.auth/login/google">Login</a>
+          <div>
+            <a href="/.auth/login/google">Login with Google</a>
+          </div>
+          <div>
+            <a href="/.auth/login/twitter">Login with Twitter</a>
+          </div>
+          <div>
+            <a href="/.auth/login/facebook">Login with Facebook</a>
+          </div>
         </div>
         <div v-else>
           <div>{{socialNetworkUserInfo.userDetails}} </div>
+          <div>{{socialNetworkUserInfo.identityProvider}} </div>
+          <div>{{socialNetworkUserInfo.userId}} </div>
+          <div>{{socialNetworkUserInfo.userRoles}} </div>
+          <div>
+            <a href="/.auth/logout">Log out</a> 
+          </div>
         </div>
       </div>
     </div>
