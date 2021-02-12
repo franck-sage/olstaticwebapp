@@ -26,21 +26,21 @@
         </div>
         <div v-else>
           Connecté en tant que 
-          <span v-if="socialNetworkUserInfo.identityProvider == 'google'" class="google">
+          <span v-if="socialNetworkUserInfo.identityProvider == 'google'" class="btn google">
             <i class="fa fa-google fa-fw"></i> {{socialNetworkUserInfo.userDetails}}
           </span>
-          <span v-if="socialNetworkUserInfo.identityProvider == 'aad'" class="windows" >
+          <span v-if="socialNetworkUserInfo.identityProvider == 'aad'" class="btn windows" >
             <i   class="fa fa-windows fa-fw"></i> {{socialNetworkUserInfo.userDetails}}
           </span>
-          <span v-if="socialNetworkUserInfo.identityProvider == 'twitter'" class="twitter">
+          <span v-if="socialNetworkUserInfo.identityProvider == 'twitter'" class="btn twitter">
             <i   class="fa fa-twitter fa-fw"></i> {{socialNetworkUserInfo.userDetails}}
           </span>
-          <span v-if="socialNetworkUserInfo.identityProvider == 'facebook'" class="fb">
+          <span v-if="socialNetworkUserInfo.identityProvider == 'facebook'" class="btn fb">
             <i class="fa fa-facebook fa-fw"></i>  {{socialNetworkUserInfo.userDetails}}
           </span>
-          <div>
-            <a href="/.auth/logout">Se Deconnecter</a> 
-          </div>
+          
+          <a class="btn" href="/.auth/logout">Se Deconnecter</a> 
+          
           <div>{{socialNetworkUserInfo.userDetails}} </div>
           <div>{{socialNetworkUserInfo.identityProvider}} </div>
           <div>{{socialNetworkUserInfo.userId}} </div>
@@ -192,6 +192,11 @@ input,
 
 .windows {
   background-color: #00C3F4;
+  color: white;  
+}
+
+.logout {
+  background-color: #cecece3f;
   color: white;  
 }
 </style>
