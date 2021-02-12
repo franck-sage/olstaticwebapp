@@ -25,6 +25,22 @@
           <a href="/.auth/login/facebook" class="fb btn"> <i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
         </div>
         <div v-else>
+          Connecté en tant que 
+          <span v-if="socialNetworkUserInfo.identityProvider == 'google'" class="google">
+            <i class="fa fa-google fa-fw"></i> {{socialNetworkUserInfo.userDetails}}
+          </span>
+          <span v-if="socialNetworkUserInfo.identityProvider == 'aad'" class="windows" >
+            <i   class="fa fa-windows fa-fw"></i> {{socialNetworkUserInfo.userDetails}}
+          </span>
+          <span v-if="socialNetworkUserInfo.identityProvider == 'twitter'" class="twitter">
+            <i   class="fa fa-twitter fa-fw"></i> {{socialNetworkUserInfo.userDetails}}
+          </span>
+          <span v-if="socialNetworkUserInfo.identityProvider == 'facebook'" class="fb">
+            <i class="fa fa-facebook fa-fw"></i>  {{socialNetworkUserInfo.userDetails}}
+          </span>
+          <div>
+            <a href="/.auth/logout">Se Deconnecter</a> 
+          </div>
           <div>{{socialNetworkUserInfo.userDetails}} </div>
           <div>{{socialNetworkUserInfo.identityProvider}} </div>
           <div>{{socialNetworkUserInfo.userId}} </div>
