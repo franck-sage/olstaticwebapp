@@ -25,7 +25,7 @@
           <a href="/.auth/login/facebook" class="fb btn"> <i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
         </div>
         <div v-else>
-          Connecté en tant que 
+          Connect&eacute; en tant que 
           <span v-if="socialNetworkUserInfo.identityProvider == 'google'" class="btn google">
             <i class="fa fa-google fa-fw"></i> {{socialNetworkUserInfo.userDetails}}
           </span>
@@ -162,7 +162,7 @@ body {
 input,
 .btn {
   width: 100%;
-  max-width: 300px;
+  max-width: 250px;
   padding: 12px;
   border: none;
   border-radius: 4px;
