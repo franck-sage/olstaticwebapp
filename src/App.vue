@@ -1,28 +1,28 @@
 <template>
-  <div>Hello {{ value }}
+  <div>
     <div>
-      <div v-for="equipe in this.equipes" :key="equipe.id">
-        
-          {{equipe.Code}} - {{equipe.Nom}}
-      </div>
+      <table id="TeamTable">
+          <tr class="TeamHeader">
+          <th style="width:60%;">Code</th>
+          <th style="width:40%;">Nom</th>
+        </tr>
+        <tr v-for="equipe in this.equipes" :key="equipe.id">
+            <td>{{equipe.Code}}</td><td>{{equipe.Nom}}</td>
+        </tr>
+      </table>
     </div>
     <hr/>
     <div>
       Comptes Sociaux
       <div>
-        <div v-if="socialNetworkUserInfo == null">
-          <div>
-            <a href="/.auth/login/aad">Login with Microsoft Azure</a>
-          </div>
-          <div>
-            <a href="/.auth/login/google">Login with Google</a>
-          </div>
-          <div>
-            <a href="/.auth/login/twitter">Login with Twitter</a>
-          </div>
-          <div>
-            <a href="/.auth/login/facebook">Login with Facebook</a>
-          </div>
+        <div v-if="socialNetworkUserInfo == null" class="col">
+          <a href="/.auth/login/aad" class="windows btn"><i class="fa fa-windows fa-fw"></i> Login with Microsoft</a>
+          
+          <a href="/.auth/login/google" class="google btn"><i class="fa fa-google fa-fw"></i> Login with Google</a>
+          
+          <a href="/.auth/login/twitter" class="twitter btn"><i class="fa fa-twitter fa-fw"></i> Login with Twitter</a>
+          
+          <a href="/.auth/login/facebook" class="fb btn"> <i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
         </div>
         <div v-else>
           <div>{{socialNetworkUserInfo.userDetails}} </div>
@@ -110,3 +110,72 @@ export default {
   }
 };
 </script>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#TeamTable {
+  border-collapse: collapse; /* Collapse borders */
+  width: 100%; /* Full-width */
+  border: 1px solid #ddd; /* Add a grey border */
+  font-size: 18px; /* Increase font-size */
+}
+
+#TeamTable th, #TeamTable td {
+  text-align: left; /* Left-align text */
+  padding: 12px; /* Add padding */
+}
+
+#TeamTable tr {
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+#TeamTable tr.TeamHeader, #TeamTable tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+}
+
+/* style inputs and link buttons */
+input,
+.btn {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 5px;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+/* add appropriate colors to fb, twitter and google buttons */
+.fb {
+  background-color: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background-color: #55ACEE;
+  color: white;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
+}
+
+.windows {
+  background-color: #00C3F4;
+  color: white;  
+}
+</style>
