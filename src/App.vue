@@ -168,6 +168,7 @@ export default {
   created(){
     this.getInitialConfig();
     this.getSocialUserInfo();
+    this.fetchdata();
     
   },
   mounted(){
