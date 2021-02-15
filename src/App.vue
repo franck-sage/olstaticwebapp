@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      Appel &aacute; l'application Strapi
       <table id="TeamTable">
           <tr class="TeamHeader">
           <th style="width:60%;">Code</th>
@@ -51,6 +52,21 @@
         </div>
       </div>
     </div>
+    <hr/>
+    <div>
+      Appel &aacute; l'API de cette application
+        <table id="TeamTable">
+          <tr class="TeamHeader">
+          <th style="width:25%;">Partition</th>
+          <th style="width:25%;">Row</th>
+          <th style="width:25%;">Data1</th>
+          <th style="width:25%;">Data2</th>
+        </tr>
+        <tr v-for="datares in this.apidataresult" :key="datares.RowKey">
+            <td>{{datares.PartitionKey}}</td><td>{{datares.RowKey}}</td><td>{{datares.data1}}</td><td>{{datares.data2}}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 
 </template>
@@ -66,7 +82,8 @@ export default {
       user: null,
       equipes:null, 
       socialNetworkUserInfo: null,
-      config:null
+      config:null,
+      apidataresult:null
     };
   },
   methods:{
@@ -136,7 +153,16 @@ export default {
       fetch("/.auth/me").then(
         response => response.json()
       ).then(data => self.socialNetworkUserInfo = data.clientPrincipal);
+    },
+    fetchdata(){
+      var self = this;
+      fetch("/api/data").then(
+        response => response.json()
+      ).then(
+        data => {self.apidataresult = data;}
+      )
     }
+
 
   },
   created(){
