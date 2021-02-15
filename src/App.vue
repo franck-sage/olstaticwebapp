@@ -65,21 +65,44 @@ export default {
       token: "",
       user: null,
       equipes:null, 
-      host:process.env.VUE_APP_STRAPI_API,
-      socialNetworkUserInfo: null
+      socialNetworkUserInfo: null,
+      config:null
     };
   },
   methods:{
+    getInitialConfig(){
+      var userId = process.env.VUE_APP_STRAPI_USER;
+      var userPassword = process.env.VUE_APP_STRAPI_PASSWORD;
+      var host = process.env.VUE_APP_STRAPI_API;
+      if(userId && userPassword && host){
+        this.config = {
+          login:userId,
+          password: userPassword,
+          host: host    
+        }
+        this.authenticate();
+      }else {
+        var self = this;
+        fetch('/api/config', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }).then(response => response.json())
+        .then(data => {
+          self.config = data;
+          self.authenticate();
+        });
+      }
+    },
     authenticate(){
       var self = this;
       if(!self.isLogged){
-        var userId = process.env.VUE_APP_STRAPI_USER;
-        var userPassword = process.env.VUE_APP_STRAPI_PASSWORD;
-        fetch(self.host+'/auth/local', {
+        fetch(self.config.host+'/auth/local', {
           method: 'POST',
           body: JSON.stringify({
-            identifier: userId,
-            password:userPassword}),
+            identifier: self.config.login,
+            password:self.config.password}),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -96,7 +119,7 @@ export default {
     fetchequipe(){
       var self = this;
       if (self.equipes==null){
-        fetch(self.host+'/equipes',{
+        fetch(self.config.host +'/equipes',{
           method:'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -117,7 +140,7 @@ export default {
 
   },
   created(){
-    this.authenticate();
+    this.getInitialConfig();
     this.getSocialUserInfo();
     
   },
