@@ -73,11 +73,13 @@ export default {
     authenticate(){
       var self = this;
       if(!self.isLogged){
+        var userId = process.env.VUE_APP_STRAPI_USER;
+        var userPassword = process.env.VUE_APP_STRAPI_PASSWORD;
         fetch(self.host+'/auth/local', {
           method: 'POST',
           body: JSON.stringify({
-            identifier:'franck.sage@free.fr',
-            password:'Pa$$w0rd'}),
+            identifier: userId,
+            password:userPassword}),
           headers: {
             'Content-Type': 'application/json',
           },
