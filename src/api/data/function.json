@@ -1,0 +1,45 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ],
+      "route": "data/{partition:alpha?}/{id:int?}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "messageList",
+      "type":"table",
+      "tableName": "DataTest",
+      "connection": "DataTestConnection",
+      "direction": "out"
+    },   
+    {
+      "name": "existingMessageList",
+      "type":"table",
+      "tableName": "DataTest",
+      "connection": "DataTestConnection",
+      "partitionKey": "{partition}",
+      "rowKey": "{id}",
+      "direction": "in"
+    },
+    {
+      "name": "allExistingMessageList",
+      "type":"table",
+      "tableName": "DataTest",
+      "connection": "DataTestConnection",
+      "direction": "in",
+      "take": "200"
+    }
+  ],
+  "disabled": false
+}

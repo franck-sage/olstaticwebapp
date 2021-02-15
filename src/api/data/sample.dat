@@ -1,0 +1,9 @@
+{
+    "name": "Azure",
+    "datam": {
+        "PartitionKey":"lundi",
+        "RowKey":1,
+        "data1":"data1_1",
+        "data2":"data2_1"
+    }
+}
